@@ -1,4 +1,4 @@
-package com.bloodBank;// Validator.java
+package com.bloodBank;
 public class Validator {
     public static boolean isValidBloodGroup(String bloodGroup) {
         String[] validGroups = {"A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"};

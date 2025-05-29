@@ -1,0 +1,3 @@
+ali,11,Male,A+,0987654321,Lahore,2025-06-05,true
+Abdullah,18,Male,B+,Lahore,09876543212,2025-05-14,true
+Fateh Ali,19,Male,B+,03223984633,Lahore,2025-04-27,true

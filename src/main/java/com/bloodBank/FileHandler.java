@@ -85,7 +85,6 @@ public class FileHandler {
         return acceptors;
     }
 
-    // Existing utility methods
     public static void saveToFile(String fileName, List<String> data) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
             for (String line : data) {
@@ -100,7 +99,7 @@ public class FileHandler {
     public static List<String> readFromFile(String fileName) {
         List<String> lines = new ArrayList<>();
         File file = new File(fileName);
-        if (!file.exists()) return lines;  // avoid FileNotFound
+        if (!file.exists()) return lines;
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String line;

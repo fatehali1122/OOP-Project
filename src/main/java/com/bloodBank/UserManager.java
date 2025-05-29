@@ -6,7 +6,7 @@ import java.util.*;
 public class UserManager {
     private static final String USER_FILE = "users.txt";
 
-    // Register a new user (write to file)
+
     public static void registerUser(String username, String password) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(USER_FILE, true))) {
             writer.write(username + "," + password);
@@ -16,7 +16,7 @@ public class UserManager {
         }
     }
 
-    // Check if username already exists
+
     public static boolean isUsernameTaken(String username) {
         List<String> users = readAllUsers();
         for (String line : users) {
@@ -28,7 +28,6 @@ public class UserManager {
         return false;
     }
 
-    // Validate login
     public static boolean validateLogin(String username, String password) {
         List<String> users = readAllUsers();
         for (String line : users) {
@@ -40,7 +39,6 @@ public class UserManager {
         return false;
     }
 
-    // Helper method to read all users
     private static List<String> readAllUsers() {
         List<String> lines = new ArrayList<>();
         File file = new File(USER_FILE);

@@ -18,7 +18,7 @@ public class DonorService {
             Donor d = iterator.next();
             if (d.getContact().equals(contact)) {
                 reserved = d;
-                iterator.remove(); // ✅ safe remove
+                iterator.remove();
                 break;
             }
         }

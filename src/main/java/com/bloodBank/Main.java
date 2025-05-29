@@ -1,18 +1,25 @@
-// (UPDATED MAIN GUI FILE)
 package com.bloodBank;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
+import javafx.scene.text.Font;
+import javafx.scene.control.Label;
 import java.io.*;
 import java.time.LocalDate;
 import java.util.*;
+import java.util.List;
 
 public class Main extends Application {
 
@@ -35,7 +42,12 @@ public class Main extends Application {
 
         VBox homeContent = new VBox(10);
         homeContent.setPadding(new Insets(20));
-        homeContent.getChildren().add(new Label("\u2764\ufe0f Welcome to Blood Bank Management System!"));
+        // homeContent.getChildren().add(new Label("\u2764\ufe0f Welcome to Blood Bank Management System!"));
+        Label welcomeLabel = new Label("\u2764\ufe0f Blood Line");
+        welcomeLabel.setFont(new Font("Arial", 30));  // sets font size to 24
+
+        homeContent.getChildren().add(welcomeLabel);
+
         homeContent.getChildren().add(new Label("\nThis application helps users donate and reserve blood efficiently in emergencies.\n"));
         root.setTop(homeContent);
 
@@ -45,11 +57,10 @@ public class Main extends Application {
         Tab homeTab = new Tab("Home");
         VBox homeTabContent = new VBox(10);
         homeTabContent.setPadding(new Insets(20));
-        homeTabContent.getChildren().add(new Label("This is the general welcome page.\nFeel free to explore the features from the tabs above."));
+        homeTabContent.getChildren().add(new Label("Save lives By Donating Blood .\n Click Login to Donate Blood ."));
         homeTab.setContent(homeTabContent);
         homeTab.setClosable(false);
 
-        // Donate Blood Tab
         Tab donateTab = new Tab("Donate Blood");
         donateFormContent = getDonateForm();
         donateTab.setContent(new VBox());
@@ -65,17 +76,14 @@ public class Main extends Application {
             }
         });
 
-        // Reserve Blood Tab
         Tab reserveTab = new Tab("Reserve Blood");
         reserveTab.setContent(getReserveTabContent());
         reserveTab.setClosable(false);
 
-        // Contact Tab
         Tab contactTab = new Tab("Contact");
         contactTab.setContent(getContactTabContent());
         contactTab.setClosable(false);
 
-        // About Tab
         Tab aboutTab = new Tab("About");
         aboutTab.setContent(getAboutTabContent());
         aboutTab.setClosable(false);
@@ -100,16 +108,16 @@ public class Main extends Application {
         GridPane grid = new GridPane();
         grid.setHgap(10);
         grid.setVgap(10);
-        grid.setPadding(new Insets(20, 150, 10, 10));
+        grid.setPadding(new Insets(150, 135, 150, 33));
 
         TextField username = new TextField();
         username.setPromptText("Username");
         PasswordField password = new PasswordField();
         password.setPromptText("Password");
 
-        grid.add(new Label("Username:"), 0, 0);
+        grid.add(new Label("    Username:"), 0, 0);
         grid.add(username, 1, 0);
-        grid.add(new Label("Password:"), 0, 1);
+        grid.add(new Label("    Password:"), 0, 1);
         grid.add(password, 1, 1);
 
         dialog.getDialogPane().setContent(grid);
@@ -131,7 +139,7 @@ public class Main extends Application {
                     return false;
                 } else {
                     UserManager.registerUser(user, pass);
-                    showAlert("Signup Successful", "Account created. Now login.");
+                    showAlert("Signup Successful", "New User! Please Login. ");
                     return false;
                 }
             }
@@ -150,7 +158,7 @@ public class Main extends Application {
         bloodGroupBox.setPromptText("Select Blood Group");
 
         TextField cityField = new TextField();
-        cityField.setPrefWidth(100); // or whatever width fits your layout
+        cityField.setPrefWidth(100);
         cityField.setPromptText("Enter City");
 
         Button searchButton = new Button("Search Donors");
@@ -266,7 +274,7 @@ public class Main extends Application {
                 DonorService ds = new DonorService(new DataManager());
                 ds.registerDonor(donor);
 
-                statusLabel.setText("Donor registered successfully!");
+                statusLabel.setText("Donor Registered Successfully!");
                 nameField.clear(); ageField.clear(); genderBox.setValue(null);
                 bloodGroupBox.setValue(null); cityField.clear(); contactField.clear();
                 donationDatePicker.setValue(null); availableCheck.setSelected(false);
@@ -296,14 +304,14 @@ public class Main extends Application {
     private VBox getContactTabContent() {
         VBox box = new VBox(10);
         box.setPadding(new Insets(20));
-        box.getChildren().add(new Label("Contact Us:\nEmail: support@bloodbank.com\nPhone: 123-456-7890"));
+        box.getChildren().add(new Label(" For any Query Contact Us:\nEmail: ahtshamelahi6660@gmail.com, fatehaliyasin@gmail.com\nPhone: 0328-9395432, 03030816667"));
         return box;
     }
 
     private VBox getAboutTabContent() {
         VBox box = new VBox(10);
         box.setPadding(new Insets(20));
-        box.getChildren().add(new Label("About:\nThis application helps users donate and reserve blood in emergencies."));
+        box.getChildren().add(new Label("About:\nDONATE BLOOD TO SAVE LIVES ."));
         return box;
     }
     private void showAlert(String title, String message) {
@@ -314,8 +322,8 @@ public class Main extends Application {
         alert.showAndWait();
     }
 
-
     public static void main(String[] args) {
+
         launch(args);
     }
 }
